@@ -104,7 +104,7 @@ export function detectDevice(): BuiltinHandlerName | undefined
 		}
 		// Safari with Unified-Plan support enabled.
 		else if (
-			browser.satisfies({ safari: '>=12.0' }) &&
+			(browser.satisfies({ safari: '>=12.0' }) || browser.satisfies({ ios: '>=12.0' })) &&
 			typeof RTCRtpTransceiver !== 'undefined' &&
 			RTCRtpTransceiver.prototype.hasOwnProperty('currentDirection')
 		)
@@ -112,7 +112,7 @@ export function detectDevice(): BuiltinHandlerName | undefined
 			return 'Safari12';
 		}
 		// Safari with Plab-B support.
-		else if (browser.satisfies({ safari: '>=11' }))
+		else if (browser.satisfies({ safari: '>=11' }) || browser.satisfies({ ios: '>=12.0' }))
 		{
 			return 'Safari11';
 		}
